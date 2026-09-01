@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: todolist
+Version: 0.1.0
+Summary: A simple command-line todo list
+Requires-Python: >=3.12

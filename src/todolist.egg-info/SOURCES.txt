@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+src/todolist/__init__.py
+src/todolist/__main__.py
+src/todolist/cli.py
+src/todolist/todo.py
+src/todolist.egg-info/PKG-INFO
+src/todolist.egg-info/SOURCES.txt
+src/todolist.egg-info/dependency_links.txt
+src/todolist.egg-info/entry_points.txt
+src/todolist.egg-info/top_level.txt
