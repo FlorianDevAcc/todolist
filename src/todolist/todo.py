@@ -116,7 +116,11 @@ def complete_task(filename: str, index: int) -> None:
     if index < 1 or index > len(tasks):
         raise IndexError("task index out of range")
 
-    tasks[index - 1].completed = True
+    task = tasks[index - 1]
+    task.completed = True
+
+    for subtask in task.subtasks:
+        subtask.completed = True
 
     save_tasks(filename, tasks)
 
@@ -133,6 +137,34 @@ def complete_subtask(filename: str, task_index: int, subtask_index: int) -> None
         raise IndexError("Subtask index out of range")
 
     task.subtasks[subtask_index - 1].completed = True
+
+    save_tasks(filename, tasks)
+
+
+def uncomplete_task(filename: str, index: int) -> None:
+    tasks = list_tasks(filename)
+
+    if index < 1 or index > len(tasks):
+        raise IndexError("task index out of range")
+
+    task = tasks[index - 1]
+    task.completed = False
+
+    save_tasks(filename, tasks)
+
+
+def uncomplete_subtask(filename: str, task_index: int, subtask_index: int) -> None:
+    tasks = list_tasks(filename)
+
+    if task_index < 1 or task_index > len(tasks):
+        raise IndexError("Task index out of range")
+
+    task = tasks[task_index - 1]
+
+    if subtask_index < 1 or subtask_index > len(task.subtasks):
+        raise IndexError("Subtask index out of range")
+
+    task.subtasks[subtask_index - 1].completed = False
 
     save_tasks(filename, tasks)
 

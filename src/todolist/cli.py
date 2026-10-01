@@ -7,6 +7,8 @@ from .todo import (
     add_subtask,
     complete_task,
     complete_subtask,
+    uncomplete_task,
+    uncomplete_subtask,
     list_tasks,
     remove_task,
     remove_subtask,
@@ -144,6 +146,22 @@ def handle_done(args: argparse.Namespace) -> None:
     print(f"Completed subtask {task_index}.{subtask_index}.")
 
 
+def handle_undone(args: argparse.Namespace) -> None:
+    filename, task_index, subtask_index = parse_task_reference(
+        args.file_or_reference,
+        args.reference,
+    )
+
+    if subtask_index is None:
+        uncomplete_task(filename, task_index)
+        print(f"Undone task {task_index}.")
+        return
+
+    uncomplete_subtask(filename, task_index, subtask_index,)
+
+    print(f"Completed subtask {task_index}.{subtask_index}.")
+
+
 def handle_remove(args: argparse.Namespace) -> None:
     filename, task_index, subtask_index = parse_task_reference(
         args.file_or_reference,
@@ -166,6 +184,7 @@ HANDLERS: dict[str, Callable[[argparse.Namespace], None]] = {
     "list": handle_list,
     "done": handle_done,
     "remove": handle_remove,
+    "undone": handle_undone,
 }
 
 
@@ -262,6 +281,23 @@ def build_parser() -> argparse.ArgumentParser:
     )
 
     done_parser.add_argument(
+        "reference",
+        nargs="?",
+        help="Task number or task.subtask reference.",
+    )
+
+        # UNDONE PARSER
+    undone_parser = subparsers.add_parser(
+        "undone",
+        help="Mark a completed task as not completed.",
+    )
+
+    undone_parser.add_argument(
+        "file_or_reference",
+        help="Task reference or path to the todo file.",
+    )
+
+    undone_parser.add_argument(
         "reference",
         nargs="?",
         help="Task number or task.subtask reference.",

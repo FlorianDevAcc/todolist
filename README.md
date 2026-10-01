@@ -19,14 +19,17 @@ todolist --help
 | Key | Description | Syntax | Example |
 |-----|-------------|--------|---------|
 | todolist | The program name |   |   |
-| add | Add a task | "task" |todolist add "Write a README" |
-| add | Add a task with one or moresubtasks | "task -- subtask" | todolist add "Write a README -- re-write the Installation section" |
-| add-subtask | Add a subtask to a task | task_index "task" | todolist add-subtask 1 "re-write the Resources section" |
-| done | Mark a task as "completed" | task_index | todolist done 1 |
-| done | Mark a subtask as "completed" | task_index.subtask_index | todolist done 1.1 |
-| remove | Remove a task from the todolist | task_index | todolist remove 1 |
-| remove | Remove a subtask from a task | task_index.subtask_index | todolist remove 1.1 |
-| list | Display the todolist tasks |   | todolist list |
+| add | Adds a task | "task" |todolist add "Write a README" |
+| add | Adds a task with one or moresubtasks | "task -- subtask" | todolist add "Write a README -- re-write the Installation section" |
+| add-subtask | Adds a subtask to a task | task_index "task" | todolist add-subtask 1 "re-write the Resources section" |
+| done | Marks a task as "completed" | task_index | todolist done 1 |
+| done | Marks a subtask as "completed" | task_index.subtask_index | todolist done 1.1 |
+| undone | Marks a task as "undone" | task_index | todolist undone 1 |
+| undone | Marks a subtask as "undone" | task_index.subtask_index | todolist undone 1.1 |
+| remove | Removes a task from the todolist | task_index | todolist remove 1 |
+| remove | Removes a subtask from a task | task_index.subtask_index | todolist remove 1.1 |
+| list | Displays the todolist tasks |   | todolist list |
+
 
 
 
@@ -94,4 +97,20 @@ To display the task list:
 todolist list
 ```
 
+## v0.2.0
 
+Added an auto-complete subtasks when the main task is marked as done
+
+Added undone feature
+
+To mark a task as ```undone```
+```
+todolist undone task_index
+```
+
+To mark a subtask as ```undone```
+```
+todolist undone task_index.subtask_index
+```
+task_index = 1, 2, 3...
+task_index.subtask_index = 1.1, 1.2, 2.1...
